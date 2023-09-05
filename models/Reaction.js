@@ -25,7 +25,10 @@ const reactionSchema = new Schema (
 {
     //to make sure that we are not overwriting any data when updating or creating a document in our database
     //Mongoose does not include 'virtuals' by default so add a property and set to true
-      toJSON: { getters:true,
+      toJSON: {
+        virtuals: true,
+        
+        getters:true,
     },
     id: false,
 
