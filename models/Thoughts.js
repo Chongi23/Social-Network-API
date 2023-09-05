@@ -2,9 +2,11 @@ const { Schema, model } = require('mongoose');
 const reactionSchema = require('../models/Reaction');
 const moment = require('moment');
 
-const thoughtSchema = new Schema(
+
+//Define Thoughts Schema
+const thoughtsSchema = new Schema(
   {
-    thoughtText: {
+    thoughtsText: {
         type: String,
         required: true,
         trim: true,
@@ -14,6 +16,7 @@ const thoughtSchema = new Schema(
       createdAt: {
         type: Date,
         default: Date.now,
+        //again use moment for timestamp
         get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
     },
     username: {
@@ -32,12 +35,13 @@ const thoughtSchema = new Schema(
   }
 );
 
-thoughtSchema.virtual('reactionCount').get(function () {
+//virtual method to get reaction count
+thoughtsSchema.virtual('reactionCount').get(function () {
   return `reactions: ${this.reactions.length}`;
   });
 
 
 // Initialize User model
-const Thought = model('Thought', thoughtSchema);
+const Thoughts = model('Thoughts', thoughtsSchema);
 
-module.exports = Thought;
+module.exports = Thoughts;
