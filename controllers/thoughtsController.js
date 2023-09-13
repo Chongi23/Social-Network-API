@@ -12,8 +12,8 @@ module.exports = {
 
   //Get single thought using Id params
   
-  getSingleThought(req, res) {
-    Thought.findOne({ _id: req.params.thoughtId })
+  getSingleThoughts(req, res) {
+    Thoughts.findOne({ _id: req.params.thoughtsId })
       .then((thoughtsText) =>
         !thoughtsText
           ? res.status(404).json({ message: "No thoughts with that ID" })
@@ -65,7 +65,7 @@ module.exports = {
   //Delete thought using Id
   
   deleteThoughts({ params }, res) {
-    Thoughts.findOneAndDelete({ _id: params.thoughtId })
+    Thoughts.findOneAndDelete({ _id: params.thoughtsId })
     .then(dbThoughtsData => {
       if(!dbThoughtsData) {
         res.status(404).json({ message: "No thoughts with that Id"});
@@ -105,7 +105,7 @@ module.exports = {
   //use path /api/thoughts/thoughtId/reactions/reactionId to delete a reaction
   deleteReaction({ params, body }, res) {
     Thoughts.findOneAndUpdate(
-      { _id: params.thoughtId },
+      { _id: params.thoughtsId },
       { $pull: { reactions: { reactionId: params.reactionId }}},
       { new: true, runValidators: true }
     )

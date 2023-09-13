@@ -1,7 +1,7 @@
 //Requires for express and user.thoughts routes
 const router = require('express').Router();
-const userRoutes = require('./userRoutes');
-const thoughtsRoutes = require('./thoughtsRoutes');
+const userRoutes = require('./userRoutes.js');
+const thoughtsRoutes = require('./thoughtsRoutes.js');
 
 
 //.use for users and thoughts routes
