@@ -1,4 +1,4 @@
-const { User,  Thoughts } = require('../models');
+const  User  = require('../models/User');
 
 
 //export User methods 
@@ -6,7 +6,7 @@ module.exports = {
 //get  users
   async getUsers(req, res) {
    try {
-    const user = await User.find();
+    const users = await User.find();
     res.json(users);
     } catch (err) {
       res.status(500).json({err});
@@ -16,13 +16,15 @@ module.exports = {
   //Get single user 
  async getSingleUser(req, res) {
    try {
-    const user = await User.findOne({_id: req.params.userId });
+    const user = await User.findOne({_id: req.params.userId })
+    .select('-__v');
+
     if(!user) {
       return res.status(404).json({message:'No user found with that ID'});
     }
     res.json(user);
  
-  }catch(err) {
+  } catch(err) {
       res.status(500).json(err);
     }
     

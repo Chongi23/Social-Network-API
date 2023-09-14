@@ -15,13 +15,13 @@ const userSchema = new Schema(
         trim: true,
         lowercase: true,
         unique: true,
-        //Validator for email address
+      //Validator for email address
         validate: {
-            validator: function(v) {
-                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
-            },
-            message: "Please enter a valid email"
-        },
+          validator: function(v) {
+               return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+           },
+           message: "Please enter a valid email"
+          },
         required: [true, "Email required"]
     },
       thoughts: [{
