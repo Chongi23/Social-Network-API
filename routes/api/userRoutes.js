@@ -2,17 +2,17 @@
 const router = require('express').Router();
 
 const {
-  createNewUser,
   getUsers,
   getSingleUser,
+  createNewUser,
   updateUser
 } = require('../../controllers/userController.js');
 
-//path to get all users or create new one
+// /api/users
 router.route('/').get(getUsers)
 .post(createNewUser);
 
-//path to get/put(update)/or delete user
+// /api/users/:userId
 router.route('/:userId')
 .get(getSingleUser)
 .put(updateUser)

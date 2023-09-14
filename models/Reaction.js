@@ -22,7 +22,6 @@ const reactionSchema = new Schema (
         type: Date,
         //Use moment for timestamp format
         default:Date.now,
-        get: (createdAtVal) => moment(createdAtVal).format('MM DD YYYY [at] hh:mm a')
     },
 },
 {

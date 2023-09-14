@@ -2,12 +2,11 @@ const router = require('express').Router();
 
 //Requires for thoughts/reactions methods
 const {
-  
-  getThoughts,
-  getSingleThoughts,
-    createThoughts,
-    updateThoughts,
-    deleteThoughts,
+    getThoughts,
+    getSingleThought,
+    createThought,
+    updateThought,
+    deleteThought,
     addReaction,
     deleteReaction,
 
@@ -15,18 +14,18 @@ const {
 
 router.route('/')
 .get(getThoughts)
-.post(createThoughts);
+.post(createThought);
 
 router.route('/:thoughtId')
-    .get(getSingleThoughts)
-    .put(updateThoughts)
-    .delete(deleteThoughts);
+    .get(getSingleThought)
+    .put(updateThought)
+    .delete(deleteThought);
 
 router.route('/:thoughtId/reactions')
     .post(addReaction);
 
 router.route('/:thoughtId/reactions/:reactionId')
-    .delete(deleteReaction);
+   .delete(deleteReaction);
 
 
 

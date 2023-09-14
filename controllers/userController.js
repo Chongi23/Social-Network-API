@@ -3,18 +3,17 @@ const { User,  Thoughts } = require('../models');
 
 //export User methods 
 module.exports = {
-
-  //get  users
+//get  users
   async getUsers(req, res) {
    try {
-    const users = await User.find();
+    const user = await User.find();
     res.json(users);
     } catch (err) {
       res.status(500).json({err});
    }
   },
   
-  //Get single user by Id
+  //Get single user 
  async getSingleUser(req, res) {
    try {
     const user = await User.findOne({_id: req.params.userId });
@@ -22,8 +21,8 @@ module.exports = {
       return res.status(404).json({message:'No user found with that ID'});
     }
     res.json(user);
-  }
-    catch(err) {
+ 
+  }catch(err) {
       res.status(500).json(err);
     }
     
@@ -41,9 +40,10 @@ module.exports = {
       }
     },
 
+    //Update user
   async updateUser(req, res) {
     try {
-      const user = await findOneAndUpdate(
+      const user = await User.findOneAndUpdate(
         { _id : req.params.userId}, 
         {$set: req.body }, 
         {runValidators: true, new:true} 
