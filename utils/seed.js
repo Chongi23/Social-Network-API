@@ -19,31 +19,31 @@ connection.once('open', async () => {
           username: "Carmen",
           email: "Carmen@gmail.com",
           friends: ["Natalia"],
-          thoughts: "Is this going to work?"
+          
       },
       {
           username: "Sam",
           email: "ring@gmail.com",
          friends: ["Natalia", "Korra", "Inosuke"],
-         thoughts: "Can your read this?"
+         
       },
       {
         username: "Natalia",
         email: "canciones@gmail.com",
         friends: ["Carmen", "Sam"],
-        thoughts: "I hope the biopsy goes well."
+        
     },
     {
         username: "Korra",
         email: "avatar@gmail.com",
         friends: ["Sam", "Inosuke"],
-        thoughts: "Did I wash my coat?"
+        
     },
     {
         username: "Inosuke",
         email: "nodemons@gmail.com",
         friends: ["Korra", "Sam"],
-        thoughts: "Do you know the muffin man?"
+        
        
     },
   ];
