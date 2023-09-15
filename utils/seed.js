@@ -13,31 +13,33 @@ connection.once('open', async () => {
 
  
 
-  // Create an array of usernames/emails
+  // Create an array of usernames/emails/friends
   const users = [
       {
           username: "Carmen",
           email: "Carmen@gmail.com",
+          friends: ["Natalia"]  
         
       },
       {
           username: "Sam",
           email: "ring@gmail.com",
-         
+         friends: ["Natalia", "Korra", "Inosuke"]
       },
       {
         username: "Natalia",
         email: "canciones@gmail.com",
-        
+        friend: ["Carmen", "Sam"]
     },
     {
         username: "Korra",
         email: "avatar@gmail.com",
-        
+        friends: ["Sam", "Inosuke"]
     },
     {
         username: "Inosuke",
-        email: "nodemons@gmail.com"
+        email: "nodemons@gmail.com",
+        friends: ["Korra", "Sam"]
        
     },
   ];
@@ -72,7 +74,7 @@ connection.once('open', async () => {
   await User.collection.insertMany(users);
 
   // Add thoughts to the collection and await the results
-  await Thought.collection.insertMany(thoughts);
+  await Thoughts.collection.insertMany(thoughts);
 
   // Log out the seed data to indicate what should appear in the database
   console.table(users);
