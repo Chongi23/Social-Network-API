@@ -21,7 +21,7 @@ app.use(routes);
 //database connection
 db.once('open', () => {
     app.listen(PORT, () => {
-        console.log(`API server for Social-Network now on port ${PORT}!`);
+        console.log(`API server for The Space Network  now on port ${PORT}!`);
     });
 });
 

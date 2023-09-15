@@ -16,7 +16,7 @@ router.route('/').get(getUsers)
 router.route('/:userId')
 .get(getSingleUser)
 .put(updateUser)
-//.delete(deleteUser);
+.delete(deleteUser);
 
 //path to post(add friend) /delete
 router.route('/:userId/friends/:friendId')
