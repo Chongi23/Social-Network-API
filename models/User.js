@@ -37,16 +37,16 @@ const userSchema = new Schema(
     toJSON: {
   //Mongoose does not include virtuals by default so add the property and set it to true.
       virtuals: true,
-      getters: true,
+  //Removed getters: true by recommendation of AskBCS    
     },
     id: false,
   }
 );
 
 // Virtual method to get total friend count
-userSchema.virtual('friendCount').get(function () {
-  return this.friends.length;
-  });
+//userSchema.virtual('friendCount').get(function () {
+ // return this.friends.length;
+ // });
 
 
 // Initialize User  model

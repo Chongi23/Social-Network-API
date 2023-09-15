@@ -6,34 +6,66 @@ connection.on('error', (err) => err);
 connection.once('open', async () => {
   console.log('connected');
 
+   // Drop existing users
+   await User.deleteMany({});
   // Drop existing thoughts
   await Thoughts.deleteMany({});
 
-  // Drop existing users
-  await User.deleteMany({});
+ 
 
   // Create an array of usernames/emails
   const users = [
       {
-          username: "amanda",
-          email: "amanda@gmail.com"
+          username: "Carmen",
+          email: "Carmen@gmail.com",
+        
       },
       {
-          username: "sam",
-          email: "sam@gmail.com"
-      }
+          username: "Sam",
+          email: "ring@gmail.com",
+         
+      },
+      {
+        username: "Natalia",
+        email: "canciones@gmail.com",
+        
+    },
+    {
+        username: "Korra",
+        email: "avatar@gmail.com",
+        
+    },
+    {
+        username: "Inosuke",
+        email: "nodemons@gmail.com"
+       
+    },
   ];
 
   //Create an array of thoughts/usernames
   const thoughts = [
       {
           thoughtText: "Well , Hello...",
-          username: "Jack"
+          username: "Sam"
       },
       {
           thoughtText: "What was I saying ...",
           username: "Carmen"
-      }
+      },
+      {
+        thoughtText: "can I do this?",
+        username: "Korra"
+    },
+    {
+        thoughtText: "How are we doing?",
+        username: "Inosuke"
+    },
+    {
+        thoughtText: "nunca suficiente para mi.",
+        username: "Natalia"
+    }
+
+
   ]
 
   // Add usernames to the collection and await the results

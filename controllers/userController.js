@@ -6,9 +6,12 @@ module.exports = {
 //get  users
   async getUsers(req, res) {
    try {
+    console.log("words");
     const users = await User.find();
     res.json(users);
+    console.log(users)
     } catch (err) {
+      console.log(err)
       res.status(500).json({err});
    }
   },
