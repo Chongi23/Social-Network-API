@@ -51,23 +51,23 @@ connection.once('open', async () => {
   //Create an array of thoughts/usernames
   const thoughts = [
       {
-          thoughtText: "Well , Hello...",
+          thoughtsText: "Well , Hello...",
           username: "Sam"
       },
       {
-          thoughtText: "What was I saying ...",
+          thoughtsText: "What was I saying ...",
           username: "Carmen"
       },
       {
-        thoughtText: "can I do this?",
+        thoughtsText: "can I do this?",
         username: "Korra"
     },
     {
-        thoughtText: "How are we doing?",
+        thoughtsText: "How are we doing?",
         username: "Inosuke"
     },
     {
-        thoughtText: "nunca suficiente para mi.",
+        thoughtsText: "nunca suficiente para mi.",
         username: "Natalia"
     }
 

@@ -64,6 +64,7 @@ module.exports = {
         }
       },
      
+      //Delete User
  async deleteUser(req, res) {
   try {
     const user = await User.findOneAndRemove(
@@ -80,8 +81,47 @@ module.exports = {
   } catch (err) {
     res.status(500).json(err);
   }
-}
-};
+},
+  //Add Friend
+  
+  async addFriend(req, res) {
+    try {
+      const user = await User.fineOneAndUpdate(
+        {_id: req.params.userId},
+        {$addToSet: { users:req.body }},
+        { runValidators: true, new: true }
+      );
+      if(!user){
+        return  res.status(404).json ({message:'no users found'})
+      }
+  res.json(user);
+  
+     } catch (err) {
+      res.status(500).json(err);
+     }
+  },
+    
+   // Remove friend
+   async deleteFriend(req, res) {
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $pull: { users: { userId: req.params.userId } } },
+        { runValidators: true, new: true }
+      )
+  
+      if (!user) {
+        return res.status(404).json({ message: 'No user with this id!' });
+      }
+  
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+  };
+
+
     
     
  

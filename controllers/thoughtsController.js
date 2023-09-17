@@ -17,8 +17,10 @@ module.exports = {
   
   async getSingleThought(req, res) {
    try {
-    const thought = await Thoughts.findOne({_id: req.params.thoughtId});
-    if (!comment) {
+    const thought = await Thoughts.findOne({_id: req.params.thoughtId })
+   
+
+    if (!thought) {
       return res.status(404).json({ message: 'No thought found with that ID'});
     }
     res.json(thought);
@@ -33,20 +35,19 @@ module.exports = {
   try {
     const thought = await Thoughts.create(req.body);
     const user = await User.findOneAndUpdate(
-      { _id : req.body._userId}, 
-      {$push:{thoughts: thought}},
-       {new: true}
-        );
-  if (!user) {
-    return res.status(404)
-    .json({ message: 'thought created, but no users with this ID'});
+      { _id: req.body.userId },
+      { $addToSet: { thoughts: thought_id } },
+      
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: 'Thought created but no user with this id!' })
+    }
+    res.json(thought);
+  } catch (err) {
+    res.status(500).json(err);
   }
-  res.json({ message: 'thought created'})
-  }  catch (err) {
-    console.error(err);
-  }
-   
-  },
+ },
 
   //update an existing thought using Id
   
@@ -64,6 +65,7 @@ module.exports = {
         res.json(thought);
         } 
         catch (error) {
+          console.log(err);
           res.status(500).json(err);
         }
       },
@@ -80,14 +82,13 @@ module.exports = {
 
     const user = await User.findOneAndUpdate(
       { thought: req.params.thoughtId },
-      { $pull: { thought: req.params.thoughtId } },
+      { $pull: { thoughts: req.params.thoughtId } },
       { new: true }
     );
 
+    //we ARE not getting the correct return message here, we get the one fo created thought -09/17/23
     if (!user) {
-      return res
-        .status(404)
-        .json({ message: 'Thought created but no user with this id!' });
+      return res.status(404).json({ message: 'Thought deleted but no user with this id!' });
     }
 
     res.json({ message: 'Thought successfully deleted!' });
@@ -97,17 +98,18 @@ module.exports = {
 },
 
   //Add reaction
-  
+  //WHY am I getting a 500 ERROR
 async addReaction(req, res) {
   try {
     const thought = await Thoughts.fineOneAndUpdate(
-      {_id: req.params.thoughtId},
-      {$addToSet: { reactions:req.body }},
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     );
     if(!thought){
       return  res.status(404).json ({message:'no thoughts found'})
     }
+
 res.json(thought);
 
    } catch (err) {
@@ -115,7 +117,7 @@ res.json(thought);
    }
 },
   
- // Remove response
+ // Remove reaction
  async deleteReaction(req, res) {
   try {
     const thought = await Thoughts.findOneAndUpdate(
