@@ -86,17 +86,20 @@ module.exports = {
   
   async addFriend(req, res) {
     try {
-      const user = await User.fineOneAndUpdate(
+      console.log(req.params, "req.params")
+      const user = await User.findOneAndUpdate(
         {_id: req.params.userId},
-        {$addToSet: { users:req.body }},
+        {$addToSet: { friends: req.params.friendId }},
         { runValidators: true, new: true }
       );
       if(!user){
         return  res.status(404).json ({message:'no users found'})
       }
+      console.log(user, "user")
   res.json(user);
   
      } catch (err) {
+      console.log(err, "err")
       res.status(500).json(err);
      }
   },
@@ -106,7 +109,7 @@ module.exports = {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $pull: { users: { userId: req.params.userId } } },
+        { $pull: { users: { friends: req.params.friendId } } },
         { runValidators: true, new: true }
       )
   
