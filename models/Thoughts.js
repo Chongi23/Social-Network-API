@@ -43,6 +43,6 @@ const thoughtsSchema = new Schema(
 
 
 // Initialize User model
-const Thoughts = model('Thoughts', thoughtsSchema);
+const Thoughts = model('thoughts', thoughtsSchema);
 
 module.exports = Thoughts;

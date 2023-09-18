@@ -26,11 +26,11 @@ const userSchema = new Schema(
     },
       thoughts: [{
         type: Schema.Types.ObjectId,
-        ref: 'Thoughts'
+        ref: 'thoughts'
       }],
       friends: [{
         type: Schema.Types.ObjectId,
-        ref: 'friendId'
+        ref: 'user'
       }],
   },
   {
@@ -50,7 +50,7 @@ const userSchema = new Schema(
 
 
 // Initialize User  model
-const User = model('User', userSchema);
+const User = model('user', userSchema);
 
 
 //Export User model

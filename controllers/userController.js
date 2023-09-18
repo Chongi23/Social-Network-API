@@ -1,4 +1,5 @@
-const  User  = require('../models/User');
+
+const { User , Thoughts}  = require('../models');
 
 
 //export User methods 
@@ -7,7 +8,8 @@ module.exports = {
   async getUsers(req, res) {
    try {
     console.log("words");
-    const users = await User.find();
+    const users = await User.find().populate('friends')
+    .populate('thoughts')
     res.json(users);
     console.log(users)
     } catch (err) {
@@ -20,7 +22,7 @@ module.exports = {
  async getSingleUser(req, res) {
    try {
     const user = await User.findOne({_id: req.params.userId })
-    .select('-__v');
+    .select('-__v').populate('friends').populate('thoughts')
 
     if(!user) {
       return res.status(404).json({message:'No user found with that ID'});
@@ -35,14 +37,17 @@ module.exports = {
   
   // Create new user
   async createNewUser(req,res) {
+User.create(req.body).then(userData => {
+  res.json(userData)
+}). catch(err => res.status(500).json(err))
+    // try {
+    //   const user = await User.create(req.body);
+    //   res.json(user);
 
-    try {
-      const user = await User.create(req.body);
-      res.json(user);
-
-      } catch (err) {
-        res.status(500).json(err);
-      }
+    //   } catch (err) {
+    //    // res.status(500).json(err);
+    //    console.log(err)
+    //   }
     },
 
     //Update user
@@ -67,15 +72,16 @@ module.exports = {
       //Delete User
  async deleteUser(req, res) {
   try {
-    const user = await User.findOneAndRemove(
-      { _id: req.params.userId },
-      {$set: req.body },
-      { runValidators: true }
+    const user = await User.findOneAndDelete(
+      { _id: req.params.userId } 
+      
       );
 
+   
     if (!user) {
       return res.status(404).json({ message: 'No User with this id!' });
     }
+    await Thoughts.deleteMany({ _id: { $in: user.thoughts}})
     res.json({ message: 'User successfully deleted!' });
     
   } catch (err) {
