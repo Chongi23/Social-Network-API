@@ -106,14 +106,14 @@ module.exports = {
   //WHY am I getting a 500 ERROR
   async addReaction(req, res) {
     try {
-      const thought = await Thoughts.fineOneAndUpdate(
+      const thought = await Thoughts.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $addToSet: { reactions: req.body } },
         { runValidators: true, new: true }
       );
       // if (!thought) {
       //   return res.status(404).json({ message: "no thoughts found" });
-      // }
+      
 console.log(thought)
       res.json(thought);
     } catch (err) {
