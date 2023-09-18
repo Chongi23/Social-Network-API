@@ -91,7 +91,13 @@ DELETE Reaction
 http://localhost:3001/api/thoughts/:thoughtId/reaction
 
 ## Walk Thru Video
+YOUTUBE CHANNEL:
 
+https://www.youtube.com/watch?v=R04JR1BhdVs
+
+SCREEN CASTIFY PAGE:
+
+<iframe src="https://drive.google.com/file/d/1sBJQgYKEHXpaJJaoP1boZtHiGQuld0-j/preview" width="640" height="480"></iframe>
 
 ## Contact
 If you have any questions about this project, please contact me at <EMAIL> or visit my GitHub page here: https://github.com/Chongi23
