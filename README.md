@@ -7,8 +7,7 @@
 6. [Usage](#usage)
 7. [Walk Thru Video](#walk-thru-video)
 8. [Contact](#contact)
-9. [Acknowledgments](#acknowledgement)
-10. [References](#references)
+9. [References](#references)
 
 
 ## User Story
@@ -45,6 +44,7 @@ We have developed Social network web app where  users can share their thoughts, 
 - To install package.json, run "npm i" from root .
 - Run "npm run dev" 
 - Use insomnia to test routes 
+
 ## Usage
 Use the following  to set up your  API routes:
 
@@ -91,6 +91,16 @@ DELETE Reaction
 http://localhost:3001/api/thoughts/:thoughtId/reaction
 
 ## Walk Thru Video
+
+
+## Contact
+If you have any questions about this project, please contact me at <EMAIL> or visit my GitHub page here: https://github.com/Chongi23
+Name : Krysta Gonzalez
+<EMAIL> gnosisknows28@gmail.com
+
+## References
+- ASK BCS
+- Tutoring - "Cory Yates" 
 
 ---
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
