@@ -13,10 +13,10 @@ const thoughtsSchema = new Schema(
         minLength: 1,
         maxLength: 250
       },
-      //createdAt: {
-       // type: Date,
-       // default: Date.now,
-   // },
+      createdAt: {
+       type: Date,
+       default: Date.now,
+   },
 
     username: {
         type: String,
@@ -35,11 +35,11 @@ const thoughtsSchema = new Schema(
 );
 
 //virtual method to get reaction count
-//thoughtsSchema.virtual('reactionCount')
+thoughtsSchema.virtual('reactionCount')
 //Getter
-//.get(function () {
- // return this.reactions.length;
- // });
+.get(function () {
+  return this.reactions.length;
+  });
 
 
 // Initialize User model
